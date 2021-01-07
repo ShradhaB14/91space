@@ -1,0 +1,11 @@
+.logo-pos {
+  margin: 0 auto;
+  top: 49px;
+  bottom: 0;
+  left: 49px;
+  right: 0;
+}
+
+.sidenav .user-view {
+  padding: 108px 32px 0px !important;
+}
