@@ -1,6 +1,9 @@
+import { useHistory, Link } from "react-router-dom";
+
 const Pagination = ({ dataPerPage, totalData, paginate, currentPage }) => {
   const number = totalData / dataPerPage;
   const pageNumber = [];
+  const history = useHistory();
 
   for (let i = 1; i <= Math.ceil(number); i++) {
     pageNumber.push(i);
@@ -11,10 +14,15 @@ const Pagination = ({ dataPerPage, totalData, paginate, currentPage }) => {
       <div className="row">
         <div className="col right">
           <ul className="pagination">
-            <li className="disabled">
-              <a onClick={() => paginate(currentPage - 1)} href="#!">
+            <li className={currentPage === 1 ? "disabled" : null}>
+              <Link
+                onClick={
+                  currentPage > 1 ? () => paginate(currentPage - 1) : null
+                }
+                to={history.location.pathname}
+              >
                 <i className="material-icons">chevron_left</i>
-              </a>
+              </Link>
             </li>
             {pageNumber.map(number => {
               return (
@@ -22,16 +30,30 @@ const Pagination = ({ dataPerPage, totalData, paginate, currentPage }) => {
                   className={currentPage === number ? "active " : null}
                   key={number}
                 >
-                  <a onClick={() => paginate(number)} href="#!">
+                  <Link
+                    onClick={() => paginate(number)}
+                    to={history.location.pathname}
+                  >
                     {number}
-                  </a>
+                  </Link>
                 </li>
               );
             })}
-            <li className="waves-effect">
-              <a href="#!" onClick={() => paginate(currentPage + 1)}>
+            <li
+              className={
+                currentPage === number ? "disabled waves-effect" : null
+              }
+            >
+              <Link
+                to={history.location.pathname}
+                onClick={
+                  currentPage === number
+                    ? null
+                    : () => paginate(currentPage + 1)
+                }
+              >
                 <i className="material-icons">chevron_right</i>
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

@@ -1,7 +1,7 @@
 import "./App.css";
 import Sidenav from "../src/component/Sidenav/Sidenav";
 import { Switch, Route } from "react-router-dom";
-import Payload from "../src/component/Payload/Payload";
+import PayloadList from "../src/component/PayloadList/PayloadList";
 import HistoryList from "./component/HistoryList/HistoryList";
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
               <HistoryList />
             </Route>
             <Route path="/payload">
-              <Payload />
+              <PayloadList />
             </Route>
           </Switch>
         </div>
