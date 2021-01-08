@@ -9,3 +9,7 @@
 .sidenav .user-view {
   padding: 108px 32px 0px !important;
 }
+
+.active {
+  background-color: rgba(0, 0, 0, 0.1);
+}

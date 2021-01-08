@@ -1,6 +1,8 @@
 import "./App.css";
-import Home from "../src/component/Home/Home";
 import Sidenav from "../src/component/Sidenav/Sidenav";
+import { Switch, Route } from "react-router-dom";
+import Payload from "../src/component/Payload/Payload";
+import HistoryList from "./component/HistoryList/HistoryList";
 function App() {
   return (
     <>
@@ -9,7 +11,15 @@ function App() {
           <Sidenav />
         </div>
         <div className="col s9">
-          <Home />
+          <Switch>
+            <Route path="/history">
+              {/* <HistoryComponent history={history} /> */}
+              <HistoryList />
+            </Route>
+            <Route path="/payload">
+              <Payload />
+            </Route>
+          </Switch>
         </div>
       </div>
     </>

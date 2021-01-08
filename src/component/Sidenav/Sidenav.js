@@ -1,5 +1,6 @@
 import logo from "../../assets/Logo.webp";
 import "./Sidenav.css";
+import { NavLink } from "react-router-dom";
 const Sidenav = () => {
   return (
     <>
@@ -16,22 +17,19 @@ const Sidenav = () => {
           </div>
         </li>
         <li>
-          <a href="#!">
+          <NavLink to="/history">
             <i className="material-icons">storage</i>History
-          </a>
+          </NavLink>
         </li>
         <li>
-          <a href="#!">
+          <NavLink to="/payload">
             <i className="material-icons">web</i>Payload
-          </a>
+          </NavLink>
         </li>
         <li>
           <div className="divider"></div>
         </li>
       </ul>
-      {/* <a data-target="slide-out" className="sidenav-trigger">
-        <i className="material-icons">menu</i>
-      </a> */}
     </>
   );
 };
