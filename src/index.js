@@ -5,13 +5,20 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "materialize-css/dist/css/materialize.min.css";
 import { BrowserRouter } from "react-router-dom";
-// M.AutoInit();
+import { Provider } from "react-redux";
+import { createStore } from "redux";
+
+import reducer from "../src/store/reducer";
+
+const store = createStore(reducer);
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );
