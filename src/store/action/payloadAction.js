@@ -1,10 +1,16 @@
 import * as actionType from "./actionType";
+import axios from "axios";
 
-const fetchPayload = () => {
+export const payloadSuccess = payload => {
   return {
-    payload: ["payload"],
+    payload: payload,
     type: actionType.FETCH_PAYLOAD
   };
 };
 
-export default fetchPayload;
+export const fetchPayload = () => {
+  return async dispatch => {
+    const res = await axios.get("https://api.spacexdata.com/v3/payloads");
+    dispatch(payloadSuccess(res.data));
+  };
+};

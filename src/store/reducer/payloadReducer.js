@@ -1,19 +1,20 @@
-import * as type from '../action/actionType';
+import * as type from "../action/actionType";
 
 const initialState = {
-  payloadList = []
-}
+  payloadList: []
+};
 
 const payloadReducer = (state = initialState, action) => {
-
-  switch(action.type) {
-
+  switch (action.type) {
     case type.FETCH_PAYLOAD:
-    console.log('From payload', action);
-    break;
-    
-    default: return state;
+      return {
+        ...state,
+        payloadList: [...action.payload]
+      };
+
+    default:
+      return state;
   }
-}
+};
 
 export default payloadReducer;

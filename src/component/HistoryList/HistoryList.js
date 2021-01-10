@@ -2,6 +2,7 @@ import History from "../History/History";
 import Pagination from "../Pagination/Pagination";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { connect } from "react-redux";
 
 const HistoryList = () => {
   const [historyList, setHistoryList] = useState([]);
@@ -34,4 +35,12 @@ const HistoryList = () => {
     </>
   );
 };
-export default HistoryList;
+
+const mapStateToProps = () => {};
+
+const mapDispatchToProps = () => {};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HistoryList);

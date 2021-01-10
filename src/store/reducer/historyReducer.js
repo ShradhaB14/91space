@@ -1,18 +1,17 @@
-import * as type from '../action/actionType';
+import * as type from "../action/actionType";
 const initialState = {
-  historyList = []
-}
+  historyList: []
+};
 
 const historyReducer = (state = initialState, action) => {
-
-  switch(action.type) {
+  switch (action.type) {
     case type.FETCH_HISTORY:
-      console.log('From fetch history', action);
+      console.log("From fetch history", action);
       return state;
 
-    default: return state;
+    default:
+      return state;
   }
-
-}
+};
 
 export default historyReducer;
