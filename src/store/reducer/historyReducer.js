@@ -6,7 +6,6 @@ const initialState = {
 const historyReducer = (state = initialState, action) => {
   switch (action.type) {
     case type.FETCH_HISTORY:
-      console.log("From fetch history", action);
       return {
         ...state,
         historyList: [...action.payload]
