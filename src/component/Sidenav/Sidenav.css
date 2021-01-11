@@ -8,6 +8,8 @@
 
 .sidenav .user-view {
   padding: 108px 32px 0px !important;
+  margin-bottom: 75px !important;
+  position: unset !important;
 }
 
 .active {

@@ -1,17 +1,23 @@
 import Payload from "../Payload/Payload";
 import Pagination from "../Pagination/Pagination";
-import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useState, useEffect, useMemo } from "react";
+import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import * as action from "../../store/action";
 
-const PayloadList = props => {
-  const tempState = useSelector(state => state.PayloadReducer);
+const PayloadList = () => {
+  const tempState = useSelector(state => state.PayloadReducer, shallowEqual);
+
   const dispatch = useDispatch();
   const [payloadList, setPayloadList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [payloadPerPage] = useState(10);
 
-  console.log("PAYYYYYY", tempState);
+  const value = useMemo(
+    () => ({
+      getState: () => tempState
+    }),
+    [tempState]
+  );
 
   const indexOfLastPage = currentPage * payloadPerPage;
   const indexOfFirstPage = indexOfLastPage - payloadPerPage;
@@ -21,8 +27,11 @@ const PayloadList = props => {
 
   useEffect(() => {
     dispatch(action.fetchPayload());
-    setPayloadList(tempState.payloadList);
   }, []);
+
+  useEffect(() => {
+    setPayloadList(value.getState().payloadList);
+  }, [value]);
 
   return (
     <>

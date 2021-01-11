@@ -1,4 +1,4 @@
-import logo from "../../assets/Logo.webp";
+import logo from "../../assets/spacex.jpeg";
 import "./Sidenav.css";
 import { NavLink } from "react-router-dom";
 const Sidenav = () => {

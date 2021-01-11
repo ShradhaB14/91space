@@ -1,21 +1,30 @@
 import History from "../History/History";
 import Pagination from "../Pagination/Pagination";
-import { useState, useEffect } from "react";
-import axios from "axios";
-import { connect } from "react-redux";
+import { useState, useEffect, useMemo } from "react";
+import { useSelector, useDispatch, shallowEqual } from "react-redux";
+import * as action from "../../store/action";
 
 const HistoryList = () => {
+  const tempState = useSelector(state => state.HistoryReducer, shallowEqual);
+  const dispatch = useDispatch();
   const [historyList, setHistoryList] = useState([]);
   const [historyPerPage] = useState(2);
   const [currentPage, setCurrentPage] = useState(1);
 
+  const value = useMemo(
+    () => ({
+      getState: () => tempState
+    }),
+    [tempState]
+  );
+
   useEffect(() => {
-    const fetchHistoryList = async () => {
-      const res = await axios.get("https://api.spacexdata.com/v3/history");
-      setHistoryList(res.data);
-    };
-    fetchHistoryList();
+    dispatch(action.fetchHistory());
   }, []);
+
+  useEffect(() => {
+    setHistoryList(value.getState().historyList);
+  }, [value]);
 
   const paginate = currentPage => setCurrentPage(currentPage);
 
@@ -36,11 +45,4 @@ const HistoryList = () => {
   );
 };
 
-const mapStateToProps = () => {};
-
-const mapDispatchToProps = () => {};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(HistoryList);
+export default HistoryList;
